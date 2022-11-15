@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdure.Kame.Core", "src\Verdure.Kame.Core\Verdure.Kame.Core.csproj", "{7E8D3C18-1C72-4848-B43D-00DA420BB382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdure.Kame.IotGrpcService", "src\Verdure.Kame.IotGrpcService\Verdure.Kame.IotGrpcService.csproj", "{973DB4BE-DE11-4ED9-8D9D-76B2A47F9BBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E8D3C18-1C72-4848-B43D-00DA420BB382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8D3C18-1C72-4848-B43D-00DA420BB382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8D3C18-1C72-4848-B43D-00DA420BB382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8D3C18-1C72-4848-B43D-00DA420BB382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{973DB4BE-DE11-4ED9-8D9D-76B2A47F9BBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{973DB4BE-DE11-4ED9-8D9D-76B2A47F9BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{973DB4BE-DE11-4ED9-8D9D-76B2A47F9BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{973DB4BE-DE11-4ED9-8D9D-76B2A47F9BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64AD0823-F3AE-4C5A-BCD8-3E728EB47D59}
+	EndGlobalSection
+EndGlobal
