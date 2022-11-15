@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Verdure.Kame.IotGrpcService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Verdure.Kame.Maui.Assistant", "src\Verdure.Kame.Maui.Assistant\Verdure.Kame.Maui.Assistant.csproj", "{9096358D-183C-4B7F-90FD-13D23EA5F9B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{4997BAA4-5A07-4217-A538-5E33D9CE41CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{274947B8-F7F5-4019-BEFC-98755628EB9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{973DB4BE-DE11-4ED9-8D9D-76B2A47F9BBF} = {4997BAA4-5A07-4217-A538-5E33D9CE41CB}
+		{9096358D-183C-4B7F-90FD-13D23EA5F9B1} = {274947B8-F7F5-4019-BEFC-98755628EB9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64AD0823-F3AE-4C5A-BCD8-3E728EB47D59}
