@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option csharp_namespace = "Verdure.Kame.IotGrpcService";
+option csharp_namespace = "Verdure.Kame.DataTransmission";
 
-package greet;
+package datatransmission;
 
 // The greeting service definition.
-service Greeter {
+service DataTransmissionGrpc {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply);
 }

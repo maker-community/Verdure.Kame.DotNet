@@ -1,13 +1,14 @@
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using Verdure.Kame.DataTransmission;
 using Verdure.Kame.IotGrpcService;
 
 namespace Verdure.Kame.IotGrpcService.Services
 {
-    public class GreeterService : Greeter.GreeterBase
+    public class DataTransmissionGrpcService : DataTransmissionGrpc.DataTransmissionGrpcBase
     {
-        private readonly ILogger<GreeterService> _logger;
-        public GreeterService(ILogger<GreeterService> logger)
+        private readonly ILogger<DataTransmissionGrpcService> _logger;
+        public DataTransmissionGrpcService(ILogger<DataTransmissionGrpcService> logger)
         {
             _logger = logger;
         }

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+		<Protobuf Include="Protos\datatransmission.proto" GrpcServices="Both" />
 	</ItemGroup>
 
 	<ItemGroup>

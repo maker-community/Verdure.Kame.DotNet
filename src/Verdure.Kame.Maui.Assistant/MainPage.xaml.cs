@@ -1,15 +1,20 @@
-﻿namespace Verdure.Kame.Maui.Assistant
+﻿using Verdure.Kame.Core.Services;
+
+namespace Verdure.Kame.Maui.Assistant
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
-        public MainPage()
+        private readonly DataTransmissionClient _client;
+
+        public MainPage(DataTransmissionClient client)
         {
             InitializeComponent();
+            _client = client;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
 
@@ -19,6 +24,16 @@
                 CounterBtn.Text = $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
+            try
+            {
+                var ret = await _client.SayHelloAsync("hello i am Kame");
+
+                Result.Text = ret;
+            }
+            catch(Exception ex)
+            {
+                Result.Text = ex.Message;
+            }
         }
     }
 }
