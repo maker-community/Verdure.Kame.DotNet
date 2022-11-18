@@ -1,4 +1,5 @@
 ﻿using Verdure.Kame.Core.Services;
+using Verdure.Kame.Maui.Assistant.Services;
 
 namespace Verdure.Kame.Maui.Assistant
 {
@@ -8,10 +9,12 @@ namespace Verdure.Kame.Maui.Assistant
 
         private readonly DataTransmissionClient _client;
 
-        public MainPage(DataTransmissionClient client)
+        private readonly IFaceScreenMediaPlayer _faceScreenMediaPlayer;
+        public MainPage(DataTransmissionClient client, IFaceScreenMediaPlayer faceScreenMediaPlayer)
         {
             InitializeComponent();
             _client = client;
+            _faceScreenMediaPlayer = faceScreenMediaPlayer;
         }
 
         private async void OnCounterClicked(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace Verdure.Kame.Maui.Assistant
                 FileTypes = customFileType,
             };
 
-            var file = await PickAndShow(options);
+           
 
             count++;
 
@@ -44,11 +47,12 @@ namespace Verdure.Kame.Maui.Assistant
             SemanticScreenReader.Announce(CounterBtn.Text);
             try
             {
-                var ret = await _client.SayHelloAsync("hello i am Kame");
+                //var ret = await _client.SayHelloAsync("hello i am Kame");
 
-                Result.Text = ret;
+                var file = await PickAndShow(options);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Result.Text = ex.Message;
             }
@@ -64,7 +68,13 @@ namespace Verdure.Kame.Maui.Assistant
                         result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
                     {
                         using var stream = await result.OpenReadAsync();
-                        var image = ImageSource.FromStream(() => stream);
+
+                        var data = await _faceScreenMediaPlayer.ConvertImageStreamToBytesAsync(stream);
+
+                        var ret = await _client.PlayImageOnFaceScreenAsync(data);
+
+                        Result.Text = ret;
+                        // var image = ImageSource.FromStream(() => stream);
                     }
                 }
 

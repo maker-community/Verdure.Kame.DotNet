@@ -1,4 +1,5 @@
-﻿using Verdure.Kame.DataTransmission;
+﻿using Google.Protobuf;
+using Verdure.Kame.DataTransmission;
 
 namespace Verdure.Kame.Core.Services
 {
@@ -17,6 +18,18 @@ namespace Verdure.Kame.Core.Services
                 Name = content
             };
             var ret = await _client.SayHelloAsync(hello, cancellationToken: cancellationToken);
+
+            return ret.Message;
+        }
+
+        public async Task<string> PlayImageOnFaceScreenAsync(byte[] frameBuffer, CancellationToken cancellationToken = default)
+        {
+            var data = new FaceScreenFrameRequest
+            {
+                FrameBuffer = ByteString.CopyFrom(frameBuffer)
+            };
+
+            var ret = await _client.PlayImageOnFaceScreenAsync(data, cancellationToken: cancellationToken);
 
             return ret.Message;
         }

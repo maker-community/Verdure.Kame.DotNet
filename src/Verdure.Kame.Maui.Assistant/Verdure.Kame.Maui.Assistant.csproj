@@ -59,8 +59,4 @@
 	  <ProjectReference Include="..\Verdure.Kame.Core\Verdure.Kame.Core.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Services\" />
-	</ItemGroup>
-
 </Project>
