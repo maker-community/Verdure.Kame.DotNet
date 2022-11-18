@@ -1,3 +1,4 @@
+using Verdure.Kame.Core;
 using Verdure.Kame.IotGrpcService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+builder.Services.AddSingleton<IQuadruped, Quadruped>();
+builder.Services.AddSingleton<IQuadrupedFaceScreen, QuadrupedFaceScreen>();
 
 var app = builder.Build();
 

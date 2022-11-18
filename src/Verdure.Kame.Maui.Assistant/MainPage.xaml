@@ -11,6 +11,7 @@
             VerticalOptions="Center">
 
             <Image
+                x:Name="DotnetBot"
                 HeightRequest="200"
                 HorizontalOptions="Center"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"

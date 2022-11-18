@@ -11,6 +11,8 @@ namespace Verdure.Kame.Core
         int backlightPin = 18;
         int blFreq = 1000;
 
+        private bool isSending;
+
         // SPI0 CS0
         SpiConnectionSettings senderSettings = new(0, 0)
         {
@@ -38,7 +40,15 @@ namespace Verdure.Kame.Core
         }
         public Task ShowImageAsync(byte[] data)
         {
-            throw new NotImplementedException();
+            if (isSending == false)
+            {
+                isSending = true;
+
+                lcd.SpiWrite(true, new ReadOnlySpan<byte>(data));
+                //todo: send data;
+            }
+            isSending = false;
+            return Task.CompletedTask;
         }
 
         public void ClearScreen()
