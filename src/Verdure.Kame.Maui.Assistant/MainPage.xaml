@@ -36,6 +36,13 @@
                 HorizontalOptions="Center"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Text="Click me" />
+            <Label
+                x:Name="VideoResult"
+                FontSize="18"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                SemanticProperties.HeadingLevel="Level2"
+                Text="test" />
             <Button
                 x:Name="PlayVideoBtn"
                 Clicked="OnVideoClicked"

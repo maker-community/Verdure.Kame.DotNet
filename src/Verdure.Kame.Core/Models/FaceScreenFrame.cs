@@ -2,6 +2,10 @@
 {
     public class FaceScreenFrame
     {
-        public byte[]? FrameBuffer { get; set; }
+        public FaceScreenFrame(byte[] frameBuffer)
+        {
+            FrameBuffer= frameBuffer;
+        }
+        public byte[] FrameBuffer { get; set; }
     }
 }

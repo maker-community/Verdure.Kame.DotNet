@@ -13,6 +13,8 @@ namespace Verdure.Kame.Core
 
         private bool isSending;
 
+        object lockobj = new object();
+
         // SPI0 CS0
         SpiConnectionSettings senderSettings = new(0, 0)
         {
@@ -40,14 +42,17 @@ namespace Verdure.Kame.Core
         }
         public Task ShowImageAsync(byte[] data)
         {
-            if (isSending == false)
+            lock (lockobj)
             {
-                isSending = true;
+                if (isSending == false)
+                {
+                    isSending = true;
 
-                lcd.SpiWrite(true, new ReadOnlySpan<byte>(data));
-                //todo: send data;
+                    lcd.SpiWrite(true, new ReadOnlySpan<byte>(data));
+                    //todo: send data;
+                }
+                isSending = false;
             }
-            isSending = false;
             return Task.CompletedTask;
         }
 

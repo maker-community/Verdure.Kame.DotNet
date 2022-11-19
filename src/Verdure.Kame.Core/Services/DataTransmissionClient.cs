@@ -1,4 +1,6 @@
 ﻿using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Verdure.Kame.Core.Models;
 using Verdure.Kame.DataTransmission;
 
 namespace Verdure.Kame.Core.Services
@@ -30,6 +32,30 @@ namespace Verdure.Kame.Core.Services
             };
 
             var ret = await _client.PlayImageOnFaceScreenAsync(data, cancellationToken: cancellationToken);
+
+            return ret.Message;
+        }
+
+        public async Task<string> PlayVideoOnFaceScreenAsync(List<FaceScreenFrame> faceScreenFrames, CancellationToken cancellationToken = default)
+        {
+            var requestData = new FaceScreenFrameListRequest();
+
+            var dataList = new RepeatedField<FaceScreenFrameRequest>();
+
+            if (faceScreenFrames != null && faceScreenFrames.Count > 0)
+            {
+                foreach (var faceFrame in faceScreenFrames)
+                {
+                    var faceData = new FaceScreenFrameRequest
+                    {
+                        FrameBuffer = ByteString.CopyFrom(faceFrame.FrameBuffer)
+                    };
+                    dataList.Add(faceData);
+                }
+            }
+            requestData.FaceScreenFrames.AddRange(dataList);
+
+            var ret = await _client.PlayVideoOnFaceScreenAsync(requestData);
 
             return ret.Message;
         }
