@@ -20,8 +20,8 @@ namespace Verdure.Kame.Maui.Assistant
 
             builder.Services.AddGrpcClient<DataTransmissionGrpc.DataTransmissionGrpcClient>(o =>
             {
-                //o.Address = new Uri("http://192.168.3.239:5241");
-                o.Address = new Uri("http://192.168.3.221:5241");
+                o.Address = new Uri("http://192.168.3.239:5241");
+                //o.Address = new Uri("http://192.168.3.221:5241");
             });
 
             builder.Services.AddTransient<MainPage>();

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using OpenCvSharp;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using Verdure.Kame.Maui.Assistant.Services;
 
@@ -13,15 +14,19 @@ namespace Verdure.Kame.Maui.Assistant.Platforms.Windows
 
             var mat = OpenCvSharp.Extensions.BitmapConverter.ToMat(image);
 
-            var mat1 = mat.Resize(new OpenCvSharp.Size(127, 320), 0, 0, OpenCvSharp.InterpolationFlags.Area);
+            var mat3 = new Mat();
 
-            var mat2 = mat1.CvtColor(OpenCvSharp.ColorConversionCodes.RGBA2BGR);
+            Cv2.Rotate(mat, mat3, RotateFlags.Rotate90Clockwise); //再旋转
+
+            var mat1 = mat3.Resize(new OpenCvSharp.Size(172, 320), 0, 0, OpenCvSharp.InterpolationFlags.Area);
+
+            var mat2 = mat1.CvtColor(OpenCvSharp.ColorConversionCodes.RGBA2BGR565);
 
             var dataMeta = mat2.Data;
 
-            var data = new byte[127 * 320 * 2];
+            var data = new byte[172 * 320 * 2];
 
-            Marshal.Copy(dataMeta, data, 0, 127 * 320 * 2);
+            Marshal.Copy(dataMeta, data, 0, 172 * 320 * 2);
 
             return Task.FromResult(data);
         }

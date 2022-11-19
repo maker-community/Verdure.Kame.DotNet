@@ -40,10 +40,24 @@ namespace Verdure.Kame.IotGrpcService.Services
             };
         }
 
-        public override Task<MsgReply> PlayVideoOnFaceScreen(FaceScreenFrameListRequest request, ServerCallContext context)
+        public override async Task<MsgReply> PlayVideoOnFaceScreen(FaceScreenFrameListRequest request, ServerCallContext context)
         {
 
-            return base.PlayVideoOnFaceScreen(request, context);
+            if (request.FaceScreenFrames != null && request.FaceScreenFrames.Count > 0)
+            {
+                foreach (var face in request.FaceScreenFrames)
+                {
+                    var imageData = face.FrameBuffer.ToByteArray();
+
+                    await _quadrupedFaceScreen.ShowImageAsync(imageData);
+
+                }
+            }
+            return new MsgReply
+            {
+                StatusCode = 200,
+                Message = "ok"
+            };
         }
     }
 }

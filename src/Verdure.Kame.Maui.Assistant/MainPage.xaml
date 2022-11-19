@@ -36,7 +36,12 @@
                 HorizontalOptions="Center"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Text="Click me" />
-
+            <Button
+                x:Name="PlayVideoBtn"
+                Clicked="OnVideoClicked"
+                HorizontalOptions="Center"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Text="发送视频数据" />
         </VerticalStackLayout>
     </ScrollView>
 

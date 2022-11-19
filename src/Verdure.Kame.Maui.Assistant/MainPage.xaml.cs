@@ -74,7 +74,6 @@ namespace Verdure.Kame.Maui.Assistant
                         var ret = await _client.PlayImageOnFaceScreenAsync(data);
 
                         Result.Text = ret;
-                        // var image = ImageSource.FromStream(() => stream);
                     }
                 }
 
@@ -86,6 +85,11 @@ namespace Verdure.Kame.Maui.Assistant
             }
 
             return null;
+        }
+
+        private void OnVideoClicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
