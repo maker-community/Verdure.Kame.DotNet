@@ -5,7 +5,6 @@ namespace Verdure.Kame.Maui.Assistant
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         private readonly DataTransmissionClient _client;
 
@@ -35,16 +34,6 @@ namespace Verdure.Kame.Maui.Assistant
                 FileTypes = customFileType,
             };
 
-           
-
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
             try
             {
                 //var ret = await _client.SayHelloAsync("hello i am Kame");
@@ -67,8 +56,13 @@ namespace Verdure.Kame.Maui.Assistant
                     if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
                         result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
                     {
+                        ProcessRing.IsRunning = true;
+
                         using var stream = await result.OpenReadAsync();
 
+                        var image = ImageSource.FromStream(() => stream);
+
+                        FaceScreenImage.Source = image;
                         var data = await _faceScreenMediaPlayer.ConvertImageStreamToBytesAsync(stream);
 
                         var ret = await _client.PlayImageOnFaceScreenAsync(data);
@@ -81,6 +75,7 @@ namespace Verdure.Kame.Maui.Assistant
             }
             catch (Exception ex)
             {
+                ProcessRing.IsRunning = false;
                 // The user canceled or something went wrong
             }
 
@@ -89,7 +84,6 @@ namespace Verdure.Kame.Maui.Assistant
 
         private async void OnVideoClicked(object sender, EventArgs e)
         {
-
             var customFileType = new FilePickerFileType(
               new Dictionary<DevicePlatform, IEnumerable<string>>
               {
@@ -110,32 +104,38 @@ namespace Verdure.Kame.Maui.Assistant
             {
                 //var ret = await _client.SayHelloAsync("hello i am Kame");
 
-                var file = await PickAndShowVideo(options);
+                var file = await PickAndShowVideoAsync(options);
 
             }
             catch (Exception ex)
             {
                 VideoResult.Text = ex.Message;
             }
-
+            finally
+            {
+                ProcessRing.IsRunning = false;
+            }
         }
 
-        public async Task<FileResult> PickAndShowVideo(PickOptions options)
+        public async Task<FileResult> PickAndShowVideoAsync(PickOptions options)
         {
             try
             {
                 var result = await FilePicker.Default.PickAsync(options);
+
                 if (result != null)
                 {
                     if (result.FileName.EndsWith("mp4", StringComparison.OrdinalIgnoreCase))
                     {
                         //using var stream = await result.OpenReadAsync();
 
+                        ProcessRing.IsRunning = true;
+
                         var dataList = await _faceScreenMediaPlayer.ConvertVideoToFaceScreenFramesAsync(result.FullPath);
 
                         var ret = await _client.PlayVideoOnFaceScreenAsync(dataList.ToList());
 
-                        Result.Text = ret;
+                        VideoResult.Text = ret;
                     }
                 }
 

@@ -3,53 +3,103 @@
     x:Class="Verdure.Kame.Maui.Assistant.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25"
-            VerticalOptions="Center">
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout>
             <Image
                 x:Name="DotnetBot"
-                HeightRequest="200"
-                HorizontalOptions="Center"
+                Margin="8"
+                HeightRequest="40"
+                HorizontalOptions="Start"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 Source="dotnet_bot.png" />
+            <HorizontalStackLayout>
+                <Button
+                    x:Name="PlayVideoBtn"
+                    Clicked="OnVideoClicked"
+                    HeightRequest="32"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="发送视频数据" />
+                <Button
+                    x:Name="CounterBtn"
+                    Clicked="OnCounterClicked"
+                    HeightRequest="32"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="发送图片" />
+                <ActivityIndicator
+                    x:Name="ProcessRing"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="true"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    Margin="8"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                    SemanticProperties.HeadingLevel="Level2"
+                    Text="发送结果："
+                    VerticalOptions="Center" />
+                <Label
+                    x:Name="VideoResult"
+                    Margin="8"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                    SemanticProperties.HeadingLevel="Level2"
+                    VerticalOptions="Center" />
 
-            <Label
-                FontSize="32"
-                HorizontalOptions="Center"
-                SemanticProperties.HeadingLevel="Level1"
-                Text="Hello, World!" />
+            </HorizontalStackLayout>
 
-            <Label
-                x:Name="Result"
-                FontSize="18"
-                HorizontalOptions="Center"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                SemanticProperties.HeadingLevel="Level2"
-                Text="Welcome to .NET Multi-platform App UI" />
-            <Button
-                x:Name="CounterBtn"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Text="Click me" />
-            <Label
-                x:Name="VideoResult"
-                FontSize="18"
-                HorizontalOptions="Center"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                SemanticProperties.HeadingLevel="Level2"
-                Text="test" />
-            <Button
-                x:Name="PlayVideoBtn"
-                Clicked="OnVideoClicked"
-                HorizontalOptions="Center"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Text="发送视频数据" />
-        </VerticalStackLayout>
-    </ScrollView>
+        </HorizontalStackLayout>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout
+                Padding="30,0"
+                Spacing="25"
+                VerticalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Button
+                        Grid.Row="0"
+                        Text="前进"
+                        WidthRequest="100" />
+
+                    <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                        <Button Text="左转" />
+                        <Button Text="右转" />
+                    </HorizontalStackLayout>
+                    <Button
+                        Grid.Row="2"
+                        Text="后退"
+                        WidthRequest="100" />
+
+                </Grid>
+                <Label
+                    FontSize="32"
+                    HorizontalOptions="Center"
+                    SemanticProperties.HeadingLevel="Level1"
+                    Text="Hello, World!" />
+                <Label
+                    x:Name="Result"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                    SemanticProperties.HeadingLevel="Level2"
+                    Text="Welcome to .NET Multi-platform App UI" />
+                <Image x:Name="FaceScreenImage" Margin="8" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
 
 </ContentPage>
