@@ -59,5 +59,14 @@ namespace Verdure.Kame.Core.Services
 
             return ret.Message;
         }
+
+        public async Task<string> ControlQuadrupedPostureAsync(string actionName, CancellationToken cancellationToken = default)
+        {
+            var requestData = new QuadrupedRequest { ActionName = actionName };
+
+            var ret = await _client.ControlQuadrupedPostureAsync(requestData);
+
+            return ret.Message;
+        }
     }
 }

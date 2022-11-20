@@ -148,5 +148,22 @@ namespace Verdure.Kame.Maui.Assistant
 
             return null;
         }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                var actionName = button.StyleId;
+
+                try
+                {
+                    await _client.ControlQuadrupedPostureAsync(actionName);
+                }
+                catch (Exception ex)
+                {
+                    VideoResult.Text = ex.Message;
+                }
+            }
+        }
     }
 }

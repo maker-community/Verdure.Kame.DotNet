@@ -3,10 +3,10 @@
 namespace Verdure.Kame.Maui.Assistant.ViewModel;
 
 [QueryProperty(nameof(FaceScreenFrame), "Monkey")]
-public partial class MonkeyDetailsViewModel : BaseViewModel
+public partial class MainViewModel : BaseViewModel
 {
     IMap map;
-    public MonkeyDetailsViewModel(IMap map)
+    public MainViewModel(IMap map)
     {
         this.map = map;
     }

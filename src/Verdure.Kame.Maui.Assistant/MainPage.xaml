@@ -69,16 +69,26 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Button
+                        x:Name="WalkForward"
                         Grid.Row="0"
+                        Clicked="Button_Clicked"
                         Text="前进"
                         WidthRequest="100" />
 
                     <HorizontalStackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand">
-                        <Button Text="左转" />
-                        <Button Text="右转" />
+                        <Button
+                            x:Name="TurnLeft"
+                            Clicked="Button_Clicked"
+                            Text="左转" />
+                        <Button
+                            x:Name="TurnRight"
+                            Clicked="Button_Clicked"
+                            Text="右转" />
                     </HorizontalStackLayout>
                     <Button
+                        x:Name="WalkBackward"
                         Grid.Row="2"
+                        Clicked="Button_Clicked"
                         Text="后退"
                         WidthRequest="100" />
 

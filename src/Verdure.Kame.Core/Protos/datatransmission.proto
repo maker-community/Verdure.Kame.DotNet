@@ -8,8 +8,9 @@ package datatransmission;
 service DataTransmissionGrpc {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply);
-  rpc PlayVideoOnFaceScreen(FaceScreenFrameListRequest) returns (MsgReply);
-  rpc PlayImageOnFaceScreen(FaceScreenFrameRequest) returns (MsgReply);
+  rpc PlayVideoOnFaceScreen (FaceScreenFrameListRequest) returns (MsgReply);
+  rpc PlayImageOnFaceScreen (FaceScreenFrameRequest) returns (MsgReply);
+  rpc ControlQuadrupedPosture (QuadrupedRequest) returns (MsgReply);
 }
 
 // The request message containing the user's name.
@@ -32,4 +33,8 @@ message FaceScreenFrameListRequest {
 message MsgReply {
   string message = 1;
   int32 statusCode = 2;
+}
+
+message QuadrupedRequest{
+	string ActionName = 1;
 }

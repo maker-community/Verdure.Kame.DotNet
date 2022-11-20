@@ -59,5 +59,66 @@ namespace Verdure.Kame.IotGrpcService.Services
                 Message = "ok"
             };
         }
+
+        public override async Task<MsgReply> ControlQuadrupedPosture(QuadrupedRequest request, ServerCallContext context)
+        {
+            if (request.ActionName != null)
+            {
+                switch (request.ActionName)
+                {
+                    case "HomePos":
+                        await _quadruped.HomePosAsync();
+                        break;
+                    case "WalkForward":
+                        await _quadruped.WalkForwardAsync();
+                        break;
+                    case "WalkBackward":
+                        await _quadruped.WalkBackwardAsync();
+                        break;
+                    case "TurnLeft":
+                        await _quadruped.TurnLeftAsync();
+                        break;
+                    case "TurnRight":
+                        await _quadruped.TurnRightAsync();
+                        break;
+                    case "Bow":
+                        await _quadruped.BowAsync();
+                        break;
+                    case "BendBack":
+                        await _quadruped.BendBackAsync();
+                        break;
+                    case "PushUp":
+                        await _quadruped.PushUpAsync();
+                        break;
+                    case "JumpUp":
+                        await _quadruped.JumpUpAsync();
+                        break;
+                    case "JumpBack":
+                        await _quadruped.JumpBackAsync();
+                        break;
+                    case "Dance":
+                        await _quadruped.DanceAsync();
+                        break;
+                    case "Swerve":
+                        await _quadruped.SwerveAsync();
+                        break;
+                    case "Demo":
+                        await _quadruped.DemoAsync();
+                        break;
+                    case "SayHi":
+                        await _quadruped.SayHiAsync();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            return new MsgReply
+            {
+                StatusCode = 200,
+                Message = "ok"
+            };
+        }
     }
 }
