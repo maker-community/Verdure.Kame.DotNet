@@ -1,3 +1,4 @@
+using Verdure.Kame.Core;
 using Verdure.Kame.IotGrpcService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
 
 // Add services to the container.
-builder.Services.AddGrpc();
+builder.Services.AddGrpc(option =>
+{
+    option.MaxReceiveMessageSize = null;
+});
+builder.Services.AddSingleton<IQuadruped, Quadruped>();
+builder.Services.AddSingleton<IQuadrupedFaceScreen, QuadrupedFaceScreen>();
 
 var app = builder.Build();
 

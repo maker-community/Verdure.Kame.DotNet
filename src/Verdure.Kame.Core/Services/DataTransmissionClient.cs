@@ -1,4 +1,7 @@
-﻿using Verdure.Kame.DataTransmission;
+﻿using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Verdure.Kame.Core.Models;
+using Verdure.Kame.DataTransmission;
 
 namespace Verdure.Kame.Core.Services
 {
@@ -17,6 +20,51 @@ namespace Verdure.Kame.Core.Services
                 Name = content
             };
             var ret = await _client.SayHelloAsync(hello, cancellationToken: cancellationToken);
+
+            return ret.Message;
+        }
+
+        public async Task<string> PlayImageOnFaceScreenAsync(byte[] frameBuffer, CancellationToken cancellationToken = default)
+        {
+            var data = new FaceScreenFrameRequest
+            {
+                FrameBuffer = ByteString.CopyFrom(frameBuffer)
+            };
+
+            var ret = await _client.PlayImageOnFaceScreenAsync(data, cancellationToken: cancellationToken);
+
+            return ret.Message;
+        }
+
+        public async Task<string> PlayVideoOnFaceScreenAsync(List<FaceScreenFrame> faceScreenFrames, CancellationToken cancellationToken = default)
+        {
+            var requestData = new FaceScreenFrameListRequest();
+
+            var dataList = new RepeatedField<FaceScreenFrameRequest>();
+
+            if (faceScreenFrames != null && faceScreenFrames.Count > 0)
+            {
+                foreach (var faceFrame in faceScreenFrames)
+                {
+                    var faceData = new FaceScreenFrameRequest
+                    {
+                        FrameBuffer = ByteString.CopyFrom(faceFrame.FrameBuffer)
+                    };
+                    dataList.Add(faceData);
+                }
+            }
+            requestData.FaceScreenFrames.AddRange(dataList);
+
+            var ret = await _client.PlayVideoOnFaceScreenAsync(requestData);
+
+            return ret.Message;
+        }
+
+        public async Task<string> ControlQuadrupedPostureAsync(string actionName, CancellationToken cancellationToken = default)
+        {
+            var requestData = new QuadrupedRequest { ActionName = actionName };
+
+            var ret = await _client.ControlQuadrupedPostureAsync(requestData);
 
             return ret.Message;
         }
