@@ -48,7 +48,7 @@ namespace Verdure.Kame.Core
             return Task.CompletedTask;
         }
 
-        public Task WalkForwardAsync()
+        public async Task WalkForwardAsync()
         {
             servoMotors[7].WriteAngle(50);
             servoMotors[9].WriteAngle(50);
@@ -73,11 +73,9 @@ namespace Verdure.Kame.Core
             servoMotors[5].WriteAngle(110);
             servoMotors[11].WriteAngle(110);
             await Task.Delay(200); //200毫秒
-
-            return Task.CompletedTask;
         }
 
-        public Task WalkBackwardAsync()
+        public async Task WalkBackwardAsync()
         {
             servoMotors[7].WriteAngle(90);
             servoMotors[9].WriteAngle(90);
@@ -106,11 +104,9 @@ namespace Verdure.Kame.Core
             servoMotors[5].WriteAngle(110);
             servoMotors[11].WriteAngle(110);
             await Task.Delay(200); //200毫秒
-
-            return Task.CompletedTask;
         }
 
-        public Task TurnLeftAsync()
+        public async Task TurnLeftAsync()
         {
             servoMotors[5].WriteAngle(130);
             servoMotors[11].WriteAngle(130);
@@ -143,11 +139,9 @@ namespace Verdure.Kame.Core
             servoMotors[6].WriteAngle(130);
             servoMotors[8].WriteAngle(130);
             await Task.Delay(200); //200毫秒
-
-            return Task.CompletedTask;
         }
 
-        public Task TurnRightAsync()
+        public async Task TurnRightAsync()
         {
             servoMotors[5].WriteAngle(110);
             servoMotors[11].WriteAngle(110);
@@ -172,32 +166,26 @@ namespace Verdure.Kame.Core
             servoMotors[6].WriteAngle(130);
             servoMotors[8].WriteAngle(130);
             await Task.Delay(200); //200毫秒
-
-            return Task.CompletedTask;
         }
 
-        public Task BowAsync()
+        public async Task BowAsync()
         {
             servoMotors[5].WriteAngle(140);
             servoMotors[7].WriteAngle(15);
             servoMotors[9].WriteAngle(130);
             servoMotors[11].WriteAngle(30);
             await Task.Delay(200); //200毫秒
-
-            return Task.CompletedTask;
         }
 
-        public Task BendBackAsync()
+        public async Task BendBackAsync()
         {
             servoMotors[5].WriteAngle(30);
             servoMotors[7].WriteAngle(130);
             servoMotors[9].WriteAngle(15);
             servoMotors[11].WriteAngle(140);
-            Tawait ask.Delay(200); //200毫秒
-
-            return Task.CompletedTask;
+            await Task.Delay(200); //200毫秒
         }
-        public Task PushUpAsync()
+        public async Task PushUpAsync()
         {
             servoMotors[4].WriteAngle(130);
             servoMotors[5].WriteAngle(70);
@@ -225,10 +213,9 @@ namespace Verdure.Kame.Core
                     await Task.Delay(1); //1毫秒
                 }
             }
-            return Task.CompletedTask;
         }
 
-        public Task JumpUpAsync()
+        public async Task JumpUpAsync()
         {
             servoMotors[4].WriteAngle(10);
             servoMotors[5].WriteAngle(20);
@@ -243,11 +230,9 @@ namespace Verdure.Kame.Core
             servoMotors[9].WriteAngle(140);
             servoMotors[11].WriteAngle(40);
             await Task.Delay(500); //500毫秒
-
-            return Task.CompletedTask;
         }
 
-        public Task JumpBackAsync()
+        public async Task JumpBackAsync()
         {
             servoMotors[4].WriteAngle(10);
             servoMotors[5].WriteAngle(20);
@@ -271,8 +256,6 @@ namespace Verdure.Kame.Core
             servoMotors[9].WriteAngle(70);
             servoMotors[10].WriteAngle(40);
             servoMotors[11].WriteAngle(110);
-
-            return Task.CompletedTask;
         }
 
         public async Task DanceAsync()
@@ -300,10 +283,8 @@ namespace Verdure.Kame.Core
                 servoMotors[11].WriteAngle(50);
                 await Task.Delay(200); //200毫秒
             }
-
-            return Task.CompletedTask;
         }
-        public Task SwerveAsync()
+        public async Task SwerveAsync()
         {
             servoMotors[4].WriteAngle(40);
             servoMotors[5].WriteAngle(110);
@@ -320,15 +301,13 @@ namespace Verdure.Kame.Core
                 servoMotors[6].WriteAngle(180);
                 servoMotors[8].WriteAngle(180);
                 servoMotors[10].WriteAngle(140);
-                Task.Delay(800); //800毫秒
+                await Task.Delay(800); //800毫秒
                 servoMotors[4].WriteAngle(0);
                 servoMotors[6].WriteAngle(0);
                 servoMotors[8].WriteAngle(0);
                 servoMotors[10].WriteAngle(0);
-                Task.Delay(800); //800毫秒
+                await Task.Delay(800); //800毫秒
             }
-
-            return Task.CompletedTask;
         }
         public async Task DemoAsync()
         {
@@ -356,8 +335,6 @@ namespace Verdure.Kame.Core
 
             await JumpBackAsync();
             await Task.Delay(1000);
-
-            return Task.CompletedTask;
         }
 
         public async Task SayHiAsync()
@@ -373,7 +350,6 @@ namespace Verdure.Kame.Core
                 await Task.Delay(300); //300毫秒
 
             }
-            return Task.CompletedTask;
         }
 
         private void CreateServo(Pca9685 pca9685)
